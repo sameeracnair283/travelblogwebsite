@@ -26,6 +26,9 @@
       top: 0; 
       z-index: 1000; 
     }
+    .yello-bar a{
+      color: black;
+    }
     .logo-text { 
       font-family: 'EB Garamond', serif; 
       font-weight: 700; 
@@ -109,22 +112,11 @@
     <div class="logo-text">
       <span class="small">The</span>
       Drifting<br>Quill
+      <a href="{% url 'add_blog' %}"></a>
     </div>
-    <div class="hamburger">☰</div>
   </div>
 
   <div class="hero-section">
-    <div class="title-wrap">
-      <h1 class="big-title">The Art of<br>Traveling</h1>
-      
-      <!-- LOCAL STAMP IMAGE -->
-      <img src="{% static 'blog/stamp.png' %}" class="worldwide-stamp" alt="Worldwide Stamp">
-      
-    </div>
-    
-    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4" class="main-img" alt="Travel hero image">
-  </div>
-  
   <div class="blue-box">
     Discard the checklist. We went deep into the Berber heartlands to discover that the most profound stories are found in the silence between destinations.
   </div>
@@ -155,7 +147,7 @@
   </div>
   {% empty %}
   <div class="container text-center py-5">
-    <h2>No posts yet. <a href="/add/">Add your first blog</a></h2>
+    <h2>No posts yet. <a href="{% url 'add_blog' %}"></h2>
   </div>
   {% endfor %}
 

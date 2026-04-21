@@ -1,12 +1,106 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
-<head><title>Delete</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"></head>
-<body class="container mt-5 text-center">
-  <h2>Are you sure you want to delete "{{ dest.title }}"?</h2>
-  <form method="POST">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Yes, Delete</button>
-    <a href="/" class="btn btn-secondary">Cancel</a>
-  </form>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Story - The Drifting Quill</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@700&family=Inter:wght@400&display=swap" rel="stylesheet">
+  <style>
+    body { 
+      background-color: #FDFBF7 !important; 
+      font-family: 'Inter', sans-serif !important;
+      color: #1E1E1E !important;
+    }
+    .yellow-bar { 
+      background-color: #F5C542 !important; 
+      padding: 9px 4.5%; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo-text { 
+      font-family: 'EB Garamond', serif; 
+      font-weight: 700; 
+      font-size: 13.5px; 
+      line-height: 1; 
+    }
+    .logo-text .small { font-size: 9.5px; display: block; }
+    .form-container {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 0 4.5%;
+    }
+    .form-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 50px;
+      font-weight: 700;
+      color: #1E1E1E;
+      margin-bottom: 30px;
+    }
+    /* Django form fields ku Wix style */
+    .form-container p {
+      margin-bottom: 25px;
+    }
+    .form-container label {
+      font-weight: 600;
+      color: #1E1E1E;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .form-container input[type="text"], 
+    .form-container textarea, 
+    .form-container input[type="file"] {
+      border: 2px solid #4338CA !important;
+      border-radius: 0 !important;
+      padding: 12px !important;
+      font-size: 16px !important;
+      width: 100% !important;
+    }
+    .form-container input:focus, .form-container textarea:focus {
+      border-color: #4338CA !important;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+    .btn-submit {
+      background-color: #4338CA !important;
+      color: white !important;
+      border: none !important;
+      padding: 14px 32px;
+      font-weight: 600;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .btn-back {
+      color: #4338CA !important;
+      font-weight: 600;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="yellow-bar">
+    <div class="logo-text">
+      <span class="small">The</span>
+      Drifting<br>Quill
+    </div>
+  </div>
+
+  <div class="form-container">
+    <h1 class="form-title">Add New Story</h1>
+    
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      
+      {{ form.as_p }}
+      
+      <button type="submit" class="btn btn-submit">Publish Story</button>
+      <a href="/" class="btn-back">← Back to Home</a>
+    </form>
+  </div>
 </body>
 </html>
