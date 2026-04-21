@@ -105,6 +105,21 @@
       .main-img { height: 280px; } 
       .blue-box { font-size: 12.5px; padding: 18px 4.5%; }
     }
+    .add-btn {
+      background-color: #1E1E1E;
+      color: #fff !important;
+      padding: 8px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: 0.3s;
+    }
+
+    .add-btn:hover {
+      background-color: #4338CA;
+      color: #fff !important;
+    }
   </style>
 </head>
 <body>
@@ -112,10 +127,12 @@
     <div class="logo-text">
       <span class="small">The</span>
       Drifting<br>Quill
-      <a href="{% url 'add_blog' %}"></a>
+    </div>
+
+    <div>
+      <a href="{% url 'add_blog' %}" class="add-btn">+ Add Post</a>
     </div>
   </div>
-
   <div class="hero-section">
   <div class="blue-box">
     Discard the checklist. We went deep into the Berber heartlands to discover that the most profound stories are found in the silence between destinations.
