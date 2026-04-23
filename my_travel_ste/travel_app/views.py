@@ -1,24 +1,45 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Destination
 from .forms import DestinationForm
-from django.shortcuts import redirect
 
 
 def index(request):
     dests = Destination.objects.all()
     return render(request, 'index.html', {'destinations': dests})
 
-def add_post(request):
+
+def add_blog(request):
     if request.method == "POST":
         form = DestinationForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('/')
-        # If form is NOT valid, it falls through to the render below
     else:
-        # This handles the initial GET request
         form = DestinationForm()
-    
-    # This return is OUTSIDE the 'if' block, so it always runs 
-    # unless the redirect above is triggered.
+
     return render(request, 'add_blog.html', {'form': form})
+
+
+def edit_blog(request, id):
+    post = get_object_or_404(Destination, id=id)
+
+    if request.method == "POST":
+        form = DestinationForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+        form = DestinationForm(instance=post)
+
+    return render(request, 'add_blog.html', {'form': form})
+
+
+def delete_blog(request, id):
+    post = get_object_or_404(Destination, id=id)
+    post.delete()
+    return redirect('/')
+
+
+def post_detail(request, id):
+    post = get_object_or_404(Destination, id=id)
+    return render(request, 'blog/post_detail.html', {'post': post})
